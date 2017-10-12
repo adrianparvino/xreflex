@@ -147,6 +147,16 @@ destroyNotify = do
   e <- asks someEvent
   pure $ fmapMaybe fromEvent e
 
+keyPress :: XHB t m => m (Event t KeyPressEvent)
+keyPress = do
+  e <- asks someEvent
+  pure $ fmapMaybe fromEvent e
+  
+keyRelease :: XHB t m => m (Event t KeyReleaseEvent)
+keyRelease = do
+  e <- asks someEvent
+  pure $ fmapMaybe fromEvent e
+
 mapWindows :: (XHB t m, Traversable f) => Event t (f WINDOW) -> m ()
 mapWindows e = do
   connection <- asks connection
